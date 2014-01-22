@@ -1,0 +1,138 @@
+ClrHome
+getKey->G
+3->M
+0->H
+6->B
+For(X,1,3,1)
+Output(X+1,3,"   KABOOM    ")
+Output(X+2,3,"VERSION  1.4")
+Output(X,4,"            ")
+Output(X+3,3,"SILVER   ED.")
+Output(X,4,"            ")
+For(T,1,50)
+End
+End
+For(X,1,500)
+End
+ClrHome
+Disp "BONUS POINTS"
+Disp "are awarded for"
+Disp "the AMOUNT OF"
+Disp "POINTS SCORED,"
+Disp "and SPEED."
+Pause 
+Disp "Press MODE at"
+Disp "any time to"
+Disp "PAUSE the game."
+Pause 
+ClrHome
+Menu("SPEED?","FAST",10,"MEDIUM",20,"SLOW",30)
+Lbl 10
+.01->R
+.02->V
+Goto 40
+Lbl 20
+1->R
+12.5->V
+Goto 40
+Lbl 30
+1->R
+30->V
+Goto 40
+Lbl 40
+ClrHome
+Output(5,4,"GET  READY")
+For(X,1,500)
+End
+ClrHome
+While 1
+Output(1,13,"LIFE"
+Disp "",M
+Output(3,13,"PTS."
+Disp "",H
+For(D,1,8,1)
+Output(D,2,"/")
+End
+For(E,1,8,1)
+Output(E,12,"/")
+End
+randInt(3,11)->Z
+For(X,1,7,1)
+Output(X+1,Z,"*"
+Output(X,Z," ")
+getKey->G
+B+(G=26)-(G=24)->B
+8->O
+Output(O,B+1,"=")
+Output(O,B," ")
+Output(O,B+2," ")
+If G=22
+Pause 
+If B+1=12
+10->B
+Output(8,12,"/")
+If B=1
+2->B
+Output(8,2,"/")
+For(T,R,V)
+End
+If O=X+1 and B+1=Z
+H+1->H
+Goto 5
+Lbl 5
+End
+ClrHome
+If O!=X+1 and B+1!=Z
+M-1->M
+Goto 2
+Lbl 2
+If M=0
+Goto 1
+End
+Lbl 1
+Output(5,4,"GAME  OVER"
+Pause 
+ClrHome
+If R=.01 and V=.02
+Goto 11
+Goto 21
+Lbl 11
+If H>=300
+H+500->H
+If H>=200
+H+300->H
+If H>=100
+H+100->H
+If H>=50
+H+25->H
+H+30->H
+Lbl 21
+If R=1 and V=12.5
+Goto 22
+Goto 23
+Lbl 22
+If H>=300
+H+400->H
+If H>=200
+H+200->H
+If H>=100
+H+50->H
+If H>=50
+H+25->H
+H+15->H
+Lbl 23
+Disp "SCORE",H
+For(C,1,750)
+End
+ClrHome
+If H>Q
+Then
+H->Q
+Disp "COGRATULATIONS!"
+Disp "YOU GOT A NEW"
+Disp "HIGH SCORE!",Q
+Else
+Disp "HIGH SCORE",Q
+For(M,1,750)
+End
+ClrHome

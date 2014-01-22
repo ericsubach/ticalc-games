@@ -1,0 +1,221 @@
+Lbl 87
+If theta=0
+Then
+{~.5,~1,~2,~3,~4,~5,~6,~7}->|LGRADE
+{~.5,~1,~2,~3,~4,~5,~6,~7}->|LGRAD2
+" "->Str0
+" "->Str1
+" "->Str2
+" "->Str3
+" "->Str4
+" "->Str5
+" "->Str6
+1->theta
+End
+UnArchive |LGRADE
+UnArchive |LGRAD2
+UnArchive Str1
+UnArchive Str2
+UnArchive Str3
+UnArchive Str4
+UnArchive Str5
+UnArchive Str6
+Goto 99
+Lbl 88
+0->theta
+Goto 87
+Lbl 99
+ClrHome
+Menu("WHICH SUBJECT?","ENGLISH",1,"MATH",4,"SCIENCE",7,"SOCIAL STUDIES",10,"EXTRA 1",13,"MORE",98)
+Lbl 98
+Menu("WHICH SUBJECT?","EXTRA 2",16,"RESET DEFAULTS",88,"BACK",99,"EXIT",97)
+Lbl 1
+~1->C
+~.5->D
+1->M
+Goto 91
+Lbl 4
+~2->C
+~1->D
+2->M
+Goto 91
+Lbl 7
+~3->C
+~2->D
+3->M
+Goto 91
+Lbl 10
+~4->C
+~3->D
+4->M
+Goto 91
+Lbl 13
+~5->C
+~4->D
+5->M
+Goto 91
+Lbl 16
+~6->C
+~5->D
+6->M
+Goto 91
+
+
+Lbl 91
+Menu("WHICH ONE?","INPUT GRADE",90,"CHECK GRADES",92,"CHECK COMMENTS",89,"BACK",99)
+
+Lbl 89
+If M=1
+Then
+Output(1,1,Str1
+Pause 
+Goto 99
+End
+If M=2
+Then
+Output(1,1,Str2
+Pause 
+Goto 99
+End
+If M=3
+Then
+Output(1,1,Str3
+Pause 
+Goto 99
+End
+If M=4
+Then
+Output(1,1,Str4
+Pause 
+Goto 99
+End
+If M=5
+Then
+Output(1,1,Str5
+Pause 
+Goto 99
+End
+If M=6
+Then
+Output(1,1,Str6
+Pause 
+Goto 99
+End
+
+Lbl 90
+dim(|LGRADE)->A
+A->B
+While |LGRADE(B)!=C
+B-1->B
+End
+0->|LGRADE(A+1)
+A+1->A
+While B<A
+|LGRADE(A-1)->|LGRADE(A)
+A-1->A
+End
+
+dim(|LGRAD2)->H
+H->I
+While |LGRAD2(I)!=C
+I-1->I
+End
+0->|LGRAD2(H+1)
+H+1->H
+While I<H
+|LGRAD2(H-1)->|LGRAD2(H)
+H-1->H
+End
+
+ClrHome
+Disp "YOUR POINTS?"
+Input D
+Disp "TOTAL POINTS?"
+Input E
+ClrHome
+Output(1,1,"ENTER COMMENT")
+Pause 
+ClrHome
+Input Str0
+If M=1
+Str1+Str0+", "->Str1
+If M=2
+Str2+Str0+", "->Str2
+If M=3
+Str3+Str0+", "->Str3
+If M=4
+Str4+Str0+", "->Str4
+If M=5
+Str5+Str0+", "->Str5
+If M=6
+Str6+Str0+", "->Str6
+ClrHome
+D->|LGRADE(B)
+E->|LGRAD2(I)
+Goto 99
+
+
+Lbl 92
+0->W
+0->X
+dim(|LGRADE)->A
+A->B
+While |LGRADE(B)!=C
+B-1->B
+End
+A->E
+While |LGRADE(E)!=D
+E-1->E
+End
+E+1->E
+
+dim(|LGRAD2)->O
+O->P
+While |LGRAD2(P)!=C
+P-1->P
+End
+O->S
+While |LGRAD2(S)!=D
+S-1->S
+End
+S+1->S
+1->N
+While S<P
+|LGRAD2(S)->Z
+Z+W->W
+|LGRADE(E)->Y
+Y+X->X
+Output(1,1,Y)
+Output(1,5,"/"
+Output(1,7,Z)
+Output(1,11,"NUM")
+Output(1,15,N)
+Pause 
+ClrHome
+S+1->S
+E+1->E
+N+1->N
+End
+
+ClrHome
+If W=0
+1->W
+X/W->X
+100*X->X
+round(X,2)->X
+Disp "AVERAGE:"
+Output(2,1,X)
+Output(2,10,"PERCENT")
+Pause 
+Goto 99
+
+Lbl 97
+Archive |LGRADE
+Archive |LGRAD2
+Archive Str1
+Archive Str2
+Archive Str3
+Archive Str4
+Archive Str5
+Archive Str6
+ClrHome

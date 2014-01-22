@@ -1,0 +1,545 @@
+ClrHome
+For(X,1,3)
+Output(X+1,6,"FIGHT")
+Output(X,6,"     ")
+For(Y,1,75)
+End
+End
+
+For(X,8,6,~1)
+Output(X-1,3,"VERSION  1.5")
+Output(X,3,"            ")
+For(Y,1,75)
+End
+End
+For(X,1,300)
+End
+
+Lbl 96
+ClrHome
+Menu("WHICH ONE?","PLAY",80,"CONTROLS",81,"GOAL",82,"TIP",85,"CREDITS",84,"EXIT",83)
+
+Lbl 85
+ClrHome
+Output(1,1,"DON'T KEEP      SMASHING THE    BUTTONS, ONLY   PRESS IT ONCE.")
+Pause 
+ClrHome
+Goto 96
+
+Lbl 80
+35->Z
+90->W
+90->V
+0->A
+0->B
+0->C
+0->D
+0->E
+0->F
+0->G
+0->H
+0->I
+0->J
+0->K
+0->L
+0->M
+0->P
+0->Q
+" "->Str1
+" "->Str2
+randInt(1,4)->A
+randInt(1,4)->B
+ClrDraw
+FnOff 
+AxesOff
+0->Xmin
+94->Xmax
+~62->Ymin
+0->Ymax
+ClrHome
+
+Text(10,35,Str1
+Text(50,40,Str2
+Text(0,0,"HP:"
+Text(0,10,W)
+Text(0,70,"HP:"
+Text(0,80,V)
+
+Pxl-On(23,50)
+Pxl-On(24,50)
+Line(50,~26,50,~46)
+Pxl-On(22,49)
+Pxl-On(25,49)
+Pxl-On(26,49)
+Pxl-On(29,49)
+Pxl-On(36,49)
+Pxl-On(44,49)
+Pxl-On(46,49)
+Pxl-On(22,48)
+Pxl-On(25,48)
+Pxl-On(27,48)
+Pxl-On(30,48)
+Line(48,~36,48,~44)
+Pxl-On(46,48)
+Pxl-On(23,47)
+Pxl-On(24,47)
+Line(47,~26,47,~28)
+Line(47,~31,47,~35)
+Pxl-On(44,47)
+Pxl-On(46,47)
+Pxl-On(29,46)
+Pxl-On(32,46)
+Pxl-On(45,46)
+Pxl-On(46,46)
+Pxl-On(28,45)
+Pxl-On(29,45)
+Pxl-On(31,45)
+Pxl-On(46,45)
+Pxl-On(27,44)
+Pxl-On(30,44)
+Pxl-On(28,43)
+Pxl-On(30,43)
+Pxl-On(29,42)
+Goto 6
+
+Lbl 13
+
+Lbl 4
+If P=1
+Then
+V-10->V
+0->P
+End
+If Q=1
+Then
+W-10->W
+0->Q
+End
+If F=9
+Goto 99
+If H=9
+Goto 98
+If I=1
+Then
+randInt(1,4)->A
+0->I
+Goto 3
+End
+If I=2
+Then
+randInt(1,4)->B
+0->I
+Goto 5
+End
+
+Lbl 3
+If A=1
+Then
+21->C
+"2ND        "->Str1
+End
+
+If A=2
+Then
+31->C
+"ALPHA     "->Str1
+End
+
+If A=3
+Then
+41->C
+"MATH     "->Str1
+End
+
+If A=4
+Then
+51->C
+"X^~1     "->Str1
+End
+
+Text(10,35,"                     ")
+Text(10,35,Str1)
+
+Lbl 5
+If B=1
+Then
+65->D
+"/"->Str2
+End
+
+If B=2
+Then
+75->D
+"*"->Str2
+End
+
+If B=3
+Then
+85->D
+"-"->Str2
+End
+
+If B=4
+Then
+95->D
+"+"->Str2
+End
+
+Text(50,40,"                    ")
+Text(50,40,Str2)
+
+Text(0,10,W)
+Text(0,80,V)
+
+Lbl 1
+getKey->G
+If G=21
+Then
+21->E
+Goto 2
+End
+If G=31
+Then
+31->E
+Goto 2
+End
+If G=41
+Then
+41->E
+Goto 2
+End
+If G=51
+Then
+51->E
+Goto 2
+End
+If G=65
+Then
+65->E
+Goto 2
+End
+If G=75
+Then
+75->E
+Goto 2
+End
+If G=85
+Then
+85->E
+Goto 2
+End
+If G=95
+Then
+95->E
+Goto 2
+End
+
+Goto 1
+
+Lbl 2
+If E=21 and C=21
+Then
+F+1->F
+1->I
+1->P
+Goto 7
+End
+If E=31 and C=31
+Then
+F+1->F
+1->I
+1->P
+Goto 7
+End
+If E=41 and C=41
+Then
+F+1->F
+1->I
+1->P
+Goto 7
+End
+If E=51 and C=51
+Then
+F+1->F
+1->I
+1->P
+Goto 7
+End
+
+If E=65 and D=65
+Then
+H+1->H
+2->I
+1->Q
+Goto 11
+End
+
+If E=75 and D=75
+Then
+H+1->H
+2->I
+1->Q
+Goto 11
+End
+
+If E=85 and D=85
+Then
+H+1->H
+2->I
+1->Q
+Goto 11
+End
+
+If E=95 and D=95
+Then
+H+1->H
+2->I
+1->Q
+Goto 11
+End
+
+Goto 4
+
+Lbl 11
+Pxl-On(26,48)
+Line(46,~25,44,~25)
+Line(43,~24,39,~24)
+Pxl-On(25,38)
+Pxl-On(26,38)
+Line(46,~27,45,~27)
+Line(43,~26,41,~26)
+Pxl-On(27,40)
+Pxl-On(27,39)
+Pxl-On(28,49)
+Pxl-On(28,48)
+Pxl-On(29,47)
+Pxl-On(30,47)
+Line(48,~27,47,~27,0)
+Pxl-Off(29,49)
+Pxl-Off(30,48)
+For(X,1,Z)
+End
+Pxl-Off(26,48)
+Line(46,~25,44,~25,0)
+Line(43,~24,39,~24,0)
+Pxl-Off(25,38)
+Pxl-Off(26,38)
+Line(46,~27,45,~27,0)
+Line(43,~26,41,~26,0)
+Pxl-Off(27,40)
+Pxl-Off(27,39)
+Pxl-Off(28,49)
+Pxl-Off(28,48)
+Pxl-Off(29,47)
+Pxl-Off(30,47)
+Line(48,~27,47,~27)
+Pxl-On(29,49)
+Pxl-On(30,48)
+Pxl-On(27,39)
+Goto 4
+
+Lbl 6
+Pxl-On(23,33)
+Pxl-On(24,33)
+Line(33,~26,33,~46)
+Pxl-On(22,34)
+Pxl-On(25,34)
+Pxl-On(26,34)
+Pxl-On(29,34)
+Pxl-On(36,34)
+Pxl-On(44,34)
+Pxl-On(46,34)
+Pxl-On(22,35)
+Pxl-On(25,35)
+Pxl-On(27,35)
+Pxl-On(30,35)
+Line(35,~36,35,~44)
+Pxl-On(46,35)
+Line(36,~23,36,~24)
+Line(36,~26,36,~28)
+Line(36,~31,36,~35)
+Pxl-On(44,36)
+Pxl-On(46,36)
+Pxl-On(29,37)
+Pxl-On(32,37)
+Line(37,~45,37,~46)
+Line(38,~28,38,~29)
+Pxl-On(31,38)
+Pxl-On(46,38)
+Pxl-On(27,39)
+Pxl-On(30,39)
+Pxl-On(28,40)
+Pxl-On(30,40)
+Pxl-On(29,41)
+Goto 13
+
+Lbl 7
+Pxl-On(26,35)
+Line(37,~25,39,~25)
+Line(40,~24,44,~24)
+Pxl-On(25,45)
+Pxl-On(26,45)
+Pxl-On(27,43)
+Pxl-On(27,44)
+Line(40,~26,42,~26)
+Line(37,~27,39,~27)
+Pxl-On(28,34)
+Pxl-On(28,35)
+Pxl-On(29,36)
+Pxl-On(30,36)
+Pxl-Off(27,35)
+Pxl-Off(27,36)
+Pxl-Off(29,34)
+Pxl-Off(30,35)
+
+For(X,1,Z)
+End
+
+Pxl-Off(26,35)
+Line(37,~25,39,~25,0)
+Line(40,~24,44,~24,0)
+Pxl-Off(25,45)
+Pxl-Off(26,45)
+Pxl-Off(27,43)
+Pxl-Off(27,44)
+Line(40,~26,42,~26,0)
+Line(37,~27,39,~27,0)
+Pxl-Off(28,34)
+Pxl-Off(28,35)
+Pxl-Off(29,36)
+Pxl-Off(30,36)
+Pxl-On(27,35)
+Pxl-On(27,36)
+Pxl-On(29,34)
+Pxl-On(30,35)
+Pxl-On(27,39)
+Pxl-On(27,44)
+Goto 4
+
+Lbl 99
+ClrDraw
+ClrHome
+Output(5,2,"PLAYER 1 WINS!")
+For(X,1,200)
+End
+Goto 97
+
+Lbl 98
+ClrDraw
+ClrHome
+Output(5,2,"PLAYER 2 WINS!")
+For(X,1,200)
+End
+Goto 97
+
+Lbl 97
+ClrDraw
+ClrHome
+ZStandard
+AxesOn
+Goto 96
+
+Lbl 81
+Output(1,1,"PRESS THE BUTTONTHAT THE SCREEN DISPLAYS. THE   TOP IS FOR PLYR.1 AND THE BOTTOMFOR PLYR. 2.")
+Pause 
+ClrHome
+Output(1,1,"ALSO, THE LEFT  IS FOR THE      HEALTH OF PLYR. 1, AND THE RIGHTFOR PLYR. 2.")
+Pause 
+ClrHome
+Goto 96
+
+Lbl 82
+Output(1,1,"YOUR GOAL IS TO BEAT THE OTHER  PERSON DOWN AS  FAST AS POSSIBLE. EACH HIT DOES 10 DAMAGE AND   YOU START OUT   WITH 90 HEALTH.")
+Pause 
+ClrHome
+Goto 96
+
+Lbl 83
+ClrHome
+Stop
+
+Lbl 84
+ClrDraw
+0->Xmin
+94->Xmax
+~62->Ymin
+0->Ymax
+FnOff 
+AxesOff
+For(X,50,37,~1)
+Text(X,35,"GAME BY:")
+Text(X+6,35,"                         ")
+For(Y,1,50)
+End
+End
+Text(50,28,"ERIC SUBACH")
+For(X,36,32,~1)
+Text(X+13,28,"ERIC SUBACH")
+Text(X+19,28,"                                            ")
+Text(X,35,"GAME BY:")
+Text(X+6,35,"                                ")
+End
+Text(32,35,"                                    ")
+For(X,45,37,~1)
+Text(X,28,"ERIC SUBACH")
+Text(X+6,28,"                                               ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,18,"SPECIAL THANKS TO:")
+Text(X+20,18,"                                                             ")
+Text(X,28,"ERIC SUBACH")
+Text(X+6,28,"                                          ")
+End
+Text(32,28,"                                                    ")
+For(X,46,37,~1)
+Text(X,18,"SPECIAL THANKS TO:")
+Text(X+6,18,"                                                                     ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,22,"JOE BRIGHTBILL")
+Text(X+20,3,"                                                                                                 ")
+Text(X,18,"SPECIAL THANKS TO:")
+Text(X+6,18,"                                                                    ")
+End
+Text(32,18,"                                                                     ")
+For(X,46,37,~1)
+Text(X,22,"JOE BRIGHTBILL")
+Text(X+6,3,"                                                                                                                           ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,30,"CREDITS BY:")
+Text(X+20,30,"                                                            ")
+Text(X,22,"JOE BRIGHTBILL")
+Text(X+6,3,"                                                                                                                          ")
+End
+Text(32,3,"                                                                                                                ")
+For(X,46,37,~1)
+Text(X,30,"CREDITS BY:")
+Text(X+6,30,"                                                                     ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,28,"ERIC SUBACH")
+Text(X+20,28,"                                                        ")
+Text(X,30,"CREDITS BY:")
+Text(X+6,30,"                                                      ")
+End
+Text(32,30,"                                                     ")
+For(X,46,32,~1)
+Text(X,28,"ERIC SUBACH")
+Text(X+6,28,"                                                      ")
+For(Y,1,50)
+End
+End
+ClrDraw
+ZStandard
+AxesOn
+ClrHome
+Goto 96

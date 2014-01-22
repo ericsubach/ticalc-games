@@ -1,0 +1,1676 @@
+.nolist
+#include "ion.inc"
+.list
+
+#ifdef TI83P
+	.org progstart-2
+	.db $BB,6D
+
+#else
+	.org progstart
+#endif
+	ret
+	jr nc,start
+	.db "Tic-Tac-Toe by Eric Subach",0
+
+;.nolist
+;#include "ti83plus2.inc"
+;.list
+;
+;	.org	$9D93
+;	.db	$BB,$6D	
+
+
+
+start:
+	bcall(_runindicoff)
+Begin:
+	bcall(_grbufclr)
+	ld hl,Homescreen
+	ld de,plotsscreen
+	ld bc,768
+	ldir
+	bcall(_grbufcpy)
+	ld	a,3
+	ld	(curspot),a
+	ld a,2
+	ld (PENCOL),a
+	ld a,2
+	ld (PENROW),a
+	SET	3,(IY + 5); text-inverse...black on white
+	ld hl,txtLeft
+	bcall(_vputs)
+	RES	3,(IY + 5); back to normal
+	ld a,2
+	ld (PENCOL),a
+	ld a,9
+	ld (PENROW),a
+	ld hl,txtUp
+	bcall(_vputs)
+	ld a,2
+	ld (PENCOL),a
+	ld a,16
+	ld (PENROW),a
+	ld hl,txtDown
+	bcall(_vputs)
+	ld a,2
+	ld (PENCOL),a
+	ld a,23
+	ld (PENROW),a
+	ld hl,txtRight
+	bcall(_vputs)
+homeloop:
+	bcall(_getcsc)
+	or	a
+	jp	z,homeloop
+
+	cp	skDown
+	jp	z,down
+	cp	skUp
+	jp	z,up
+	cp	sk2nd
+	jp	z,whatdo
+
+	jp	homeloop
+
+down:
+	ld	a,(curspot); what text is to be highlighted
+	cp	0
+	jp	z,homeloop
+down1:
+	cp	1
+	jp	nz,down2
+
+	ld	a,(curspot)
+	dec	a
+	ld	(curspot),a
+	ld a,2
+	ld (PENCOL),a
+	ld a,16
+	ld (PENROW),a
+	ld hl,txtDown
+	bcall(_vputs)
+	SET	3,(IY + 5); inverse the text to be highlighted
+	ld a,2
+	ld (PENCOL),a
+	ld a,23
+	ld (PENROW),a
+	ld hl,txtright
+	bcall(_vputs)
+	RES	3,(IY + 5)
+	jp	homeloop
+down2:
+	cp	2
+	jp	nz,down3
+
+	ld	a,(curspot)
+	dec	a
+	ld	(curspot),a
+	ld a,2
+	ld (PENCOL),a
+	ld a,9
+	ld (PENROW),a
+	ld hl,txtUp
+	bcall(_vputs)
+	SET	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,16
+	ld (PENROW),a
+	ld hl,txtDown
+	bcall(_vputs)
+	RES	3,(IY + 5)
+	jp	homeloop
+down3:
+	cp	3
+	jp	nz,homeloop
+
+	ld	a,(curspot)
+	dec	a
+	ld	(curspot),a
+	ld a,2
+	ld (PENCOL),a
+	ld a,2
+	ld (PENROW),a
+	ld hl,txtLeft
+	bcall(_vputs)
+	SET	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,9
+	ld (PENROW),a
+	ld hl,txtUp
+	bcall(_vputs)
+	RES	3,(IY + 5)
+	jp	homeloop
+
+up:
+	ld	a,(curspot)
+	cp	3
+	jp	z,homeloop
+up1:
+	cp	0
+	jp	nz,up2
+
+	ld	a,(curspot)
+	inc	a
+	ld	(curspot),a
+	SET	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,16
+	ld (PENROW),a
+	ld hl,txtDown
+	bcall(_vputs)
+	RES	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,23
+	ld (PENROW),a
+	ld hl,txtright
+	bcall(_vputs)
+	jp	homeloop
+up2:
+	cp	1
+	jp	nz,up3
+
+	ld	a,(curspot)
+	inc	a
+	ld	(curspot),a
+	SET	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,9
+	ld (PENROW),a
+	ld hl,txtUp
+	bcall(_vputs)
+	RES	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,16
+	ld (PENROW),a
+	ld hl,txtDown
+	bcall(_vputs)
+	jp	homeloop
+up3:
+	cp	2
+	jp	nz,homeloop
+
+	ld	a,(curspot)
+	inc	a
+	ld	(curspot),a
+	SET	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,2
+	ld (PENROW),a
+	ld hl,txtLeft
+	bcall(_vputs)
+	RES	3,(IY + 5)
+	ld a,2
+	ld (PENCOL),a
+	ld a,9
+	ld (PENROW),a
+	ld hl,txtUp
+	bcall(_vputs)
+	jp	homeloop
+whatdo:
+	ld	a,0
+	ld	(PENCOL),a
+	ld	(PENROW),a
+	ld	a,(curspot); check what is highlighted and go there
+	cp	3
+	jp	z,Gamestart
+	cp	2
+	jp	z,Controls
+	cp	1
+	jp	z,Credits
+	cp	0
+	jp	z,Gameexit
+
+Gameexit:
+	bcall(_clrscrnfull)
+	bcall(_homeup)
+	ret
+Credits:
+	bcall(_clrscrnfull)
+	ld hl,txtCredits
+	bcall(_vputs)
+	bcall(_getkey)
+	jp Begin
+Controls:
+	bcall(_clrscrnfull)
+	ld hl,txtControls
+	bcall(_vputs)
+	ld	a,7
+	ld	(PENROW),a
+	ld	a,0
+	ld	(PENCOL),a
+	ld	hl,txtControls2
+	bcall(_vputs)
+	bcall(_getkey)
+	jp Begin
+
+
+Gamestart:
+	ld	a,0; reset everything in the variables
+	ld	(PENROW),a
+	ld	(PENCOL),a
+	ld	(CURROW),a
+	ld	(CURCOL),a
+	ld	(sq1),a
+	ld	(sq2),a
+	ld	(sq3),a
+	ld	(sq4),a
+	ld	(sq5),a
+	ld	(sq6),a
+	ld	(sq7),a
+	ld	(sq8),a
+	ld	(sq9),a
+	ld	(turn),a
+	bcall(_clrscrnfull)
+	bcall(_clrlcdfull)
+	bcall(_grbufclr)
+	ld	hl,gameboard
+	bcall(_puts)
+	
+
+mainloop:
+	bcall(_getcsc); get spot on board
+	or	a
+	jp	z,mainloop
+
+	cp	sk1
+	jp	z,square7
+	cp	sk2
+	jp	z,square8
+	cp	sk3
+	jp	z,square9
+	cp	sk4
+	jp	z,square4
+	cp	sk5
+	jp	z,square5
+	cp	sk6
+	jp	z,square6
+	cp	sk7
+	jp	z,square1
+	cp	sk8
+	jp	z,square2
+	cp	sk9
+	jp	z,square3
+
+	jp	mainloop
+
+square1:
+	ld	a,(turn); actually, no real need for this because i did it a different way
+	inc	a
+	ld	(turn),a
+	ld	a,(sq1)
+	cp	0
+	jp	nz,mainloop; it the spot is taken, wait for another spot
+	ld	a,1
+	ld	(sq1),a; putting a 1 here means it is taken
+	ld	a,1
+	ld	b,1
+	jp	putx; put it on the screen
+square2:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq2)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq2),a
+	ld	a,3
+	ld	b,1
+	jp	putx
+square3:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq3)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	putx
+square4:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq4)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq4),a
+	ld	a,1
+	ld	b,3
+	jp	putx
+square5:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq5)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq5),a
+	ld	a,3
+	ld	b,3
+	jp	putx
+square6:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq6)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq6),a
+	ld	a,5
+	ld	b,3
+	jp	putx
+square7:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq7)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	putx
+square8:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq8)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq8),a
+	ld	a,3
+	ld	b,5
+	jp	putx
+square9:
+	ld	a,(turn)
+	inc	a
+	ld	(turn),a
+	ld	a,(sq9)
+	cp	0
+	jp	nz,mainloop
+	ld	a,1
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	putx
+
+putx:
+	ld	(CURCOL),a
+	ld	a,b
+	ld	(CURROW),a
+	ld	hl,txtx
+	bcall(_puts)
+	jp	aicheck; AI's turn
+puto:
+	ld	(CURCOL),a
+	ld	a,b
+	ld	(CURROW),a
+	ld	hl,txto
+	bcall(_puts)
+	jp	mainloop; your turn
+
+aicheck:
+;check if player won the game
+;1 means player occupies
+;2 means AI occupies
+	ld	a,(sq1)
+	cp	1
+	jp	nz,won2
+	ld	a,(sq4)
+	cp	1
+	jp	nz,won2
+	ld	a,(sq7)
+	cp	1
+	jp	nz,won2
+	jp	youwon
+won2:
+	ld	a,(sq2)
+	cp	1
+	jp	nz,won3
+	ld	a,(sq5)
+	cp	1
+	jp	nz,won3
+	ld	a,(sq8)
+	cp	1
+	jp	nz,won3
+	jp	youwon
+won3:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,won4
+	ld	a,(sq6)
+	cp	1
+	jp	nz,won4
+	ld	a,(sq9)
+	cp	1
+	jp	nz,won4
+	jp	youwon
+won4:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,won5
+	ld	a,(sq2)
+	cp	1
+	jp	nz,won5
+	ld	a,(sq3)
+	cp	1
+	jp	nz,won5
+	jp	youwon
+won5:
+	ld	a,(sq4)
+	cp	1
+	jp	nz,won6
+	ld	a,(sq5)
+	cp	1
+	jp	nz,won6
+	ld	a,(sq6)
+	cp	1
+	jp	nz,won6
+	jp	youwon
+won6:
+	ld	a,(sq7)
+	cp	1
+	jp	nz,won7
+	ld	a,(sq8)
+	cp	1
+	jp	nz,won7
+	ld	a,(sq9)
+	cp	1
+	jp	nz,won7
+	jp	youwon
+won7:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,won8
+	ld	a,(sq5)
+	cp	1
+	jp	nz,won8
+	ld	a,(sq9)
+	cp	1
+	jp	nz,won8
+	jp	youwon
+won8:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,win
+	ld	a,(sq5)
+	cp	1
+	jp	nz,win
+	ld	a,(sq7)
+	cp	1
+	jp	nz,win
+	jp	youwon
+
+;if it is the first turn of the computer, take middle...if can't, take corner
+win:
+	ld	a,(turn)
+	cp	1
+	jp	nz,win1
+	ld	a,(sq5)
+	cp	0
+	jp	nz,winc
+	ld	a,2
+	ld	(sq5),a
+	ld	a,3
+	ld	b,3
+	jp	puto
+;left corner
+winc:
+	ld	a,(turn)
+	cp	1
+	jp	nz,win1
+	ld	a,(sq1)
+	cp	0
+	jp	nz,rcorner
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+rcorner:
+	ld	a,(turn)
+	cp	1
+	jp	nz,win1
+	ld	a,(sq3)
+	cp	0
+	jp	nz,win1
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+
+;check if computer can win
+win1:
+	ld	a,(sq1)
+	cp	2
+	jp	nz,win2
+	ld	a,(sq4)
+	cp	2
+	jp	nz,win2
+	ld	a,(sq7)
+	cp	0
+	jp	nz,win2
+	jp	youlost
+win2:
+	ld	a,(sq1)
+	cp	2
+	jp	nz,win3
+	ld	a,(sq7)
+	cp	2
+	jp	nz,win3
+	ld	a,(sq4)
+	cp	0
+	jp	nz,win3
+	jp	youlost
+win3:
+	ld	a,(sq4)
+	cp	2
+	jp	nz,win4
+	ld	a,(sq7)
+	cp	2
+	jp	nz,win4
+	ld	a,(sq1)
+	cp	0
+	jp	nz,win4
+	jp	youlost
+win4:
+	ld	a,(sq2)
+	cp	2
+	jp	nz,win5
+	ld	a,(sq5)
+	cp	2
+	jp	nz,win5
+	ld	a,(sq8)
+	cp	0
+	jp	nz,win5
+	jp	youlost
+win5:
+	ld	a,(sq2)
+	cp	2
+	jp	nz,win6
+	ld	a,(sq8)
+	cp	2
+	jp	nz,win6
+	ld	a,(sq5)
+	cp	0
+	jp	nz,win6
+	jp	youlost
+win6:
+	ld	a,(sq8)
+	cp	2
+	jp	nz,win7
+	ld	a,(sq5)
+	cp	2
+	jp	nz,win7
+	ld	a,(sq2)
+	cp	0
+	jp	nz,win7
+	jp	youlost
+win7:
+	ld	a,(sq3)
+	cp	2
+	jp	nz,win8
+	ld	a,(sq6)
+	cp	2
+	jp	nz,win8
+	ld	a,(sq9)
+	cp	0
+	jp	nz,win8
+	jp	youlost
+win8:
+	ld	a,(sq3)
+	cp	2
+	jp	nz,win9
+	ld	a,(sq9)
+	cp	2
+	jp	nz,win9
+	ld	a,(sq6)
+	cp	0
+	jp	nz,win9
+	jp	youlost
+win9:
+	ld	a,(sq9)
+	cp	2
+	jp	nz,win10
+	ld	a,(sq6)
+	cp	2
+	jp	nz,win10
+	ld	a,(sq3)
+	cp	0
+	jp	nz,win10
+	jp	youlost
+win10:
+	ld	a,(sq1)
+	cp	2
+	jp	nz,win11
+	ld	a,(sq2)
+	cp	2
+	jp	nz,win11
+	ld	a,(sq3)
+	cp	0
+	jp	nz,win11
+	jp	youlost
+win11:
+	ld	a,(sq1)
+	cp	2
+	jp	nz,win12
+	ld	a,(sq3)
+	cp	2
+	jp	nz,win12
+	ld	a,(sq2)
+	cp	0
+	jp	nz,win12
+	jp	youlost
+win12:
+	ld	a,(sq3)
+	cp	2
+	jp	nz,win13
+	ld	a,(sq2)
+	cp	2
+	jp	nz,win13
+	ld	a,(sq1)
+	cp	0
+	jp	nz,win13
+	jp	youlost
+win13:
+	ld	a,(sq4)
+	cp	2
+	jp	nz,win14
+	ld	a,(sq5)
+	cp	2
+	jp	nz,win14
+	ld	a,(sq6)
+	cp	0
+	jp	nz,win14
+	jp	youlost
+win14:
+	ld	a,(sq4)
+	cp	2
+	jp	nz,win15
+	ld	a,(sq6)
+	cp	2
+	jp	nz,win15
+	ld	a,(sq5)
+	cp	0
+	jp	nz,win15
+	jp	youlost
+win15:
+	ld	a,(sq6)
+	cp	2
+	jp	nz,win16
+	ld	a,(sq5)
+	cp	2
+	jp	nz,win16
+	ld	a,(sq4)
+	cp	0
+	jp	nz,win16
+	jp	youlost
+win16:
+	ld	a,(sq7)
+	cp	2
+	jp	nz,win17
+	ld	a,(sq8)
+	cp	2
+	jp	nz,win17
+	ld	a,(sq9)
+	cp	0
+	jp	nz,win17
+	jp	youlost
+win17:
+	ld	a,(sq7)
+	cp	2
+	jp	nz,win18
+	ld	a,(sq9)
+	cp	2
+	jp	nz,win18
+	ld	a,(sq8)
+	cp	0
+	jp	nz,win18
+	jp	youlost
+win18:
+	ld	a,(sq8)
+	cp	2
+	jp	nz,win19
+	ld	a,(sq9)
+	cp	2
+	jp	nz,win19
+	ld	a,(sq7)
+	cp	0
+	jp	nz,win19
+	jp	youlost
+win19:
+	ld	a,(sq1)
+	cp	2
+	jp	nz,win20
+	ld	a,(sq5)
+	cp	2
+	jp	nz,win20
+	ld	a,(sq9)
+	cp	0
+	jp	nz,win20
+	jp	youlost
+win20:
+	ld	a,(sq1)
+	cp	2
+	jp	nz,win21
+	ld	a,(sq9)
+	cp	2
+	jp	nz,win21
+	ld	a,(sq5)
+	cp	0
+	jp	nz,win21
+	jp	youlost
+win21:
+	ld	a,(sq5)
+	cp	2
+	jp	nz,win22
+	ld	a,(sq9)
+	cp	2
+	jp	nz,win22
+	ld	a,(sq1)
+	cp	0
+	jp	nz,win22
+	jp	youlost
+win22:
+	ld	a,(sq3)
+	cp	2
+	jp	nz,win23
+	ld	a,(sq5)
+	cp	2
+	jp	nz,win23
+	ld	a,(sq7)
+	cp	0
+	jp	nz,win23
+	jp	youlost
+win23:
+	ld	a,(sq3)
+	cp	2
+	jp	nz,win24
+	ld	a,(sq7)
+	cp	2
+	jp	nz,win24
+	ld	a,(sq5)
+	cp	0
+	jp	nz,win24
+	jp	youlost
+win24:
+	ld	a,(sq7)
+	cp	2
+	jp	nz,bwin1
+	ld	a,(sq5)
+	cp	2
+	jp	nz,bwin1
+	ld	a,(sq3)
+	cp	0
+	jp	nz,bwin1
+	jp	youlost
+
+;block a win by the player
+bwin1:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,bwin2
+	ld	a,(sq4)
+	cp	1
+	jp	nz,bwin2
+	ld	a,(sq7)
+	cp	0
+	jp	nz,bwin2
+	ld	a,2
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	puto
+bwin2:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,bwin3
+	ld	a,(sq7)
+	cp	1
+	jp	nz,bwin3
+	ld	a,(sq4)
+	cp	0
+	jp	nz,bwin3
+	ld	a,2
+	ld	(sq4),a
+	ld	a,1
+	ld	b,3
+	jp	puto
+bwin3:
+	ld	a,(sq4)
+	cp	1
+	jp	nz,bwin4
+	ld	a,(sq7)
+	cp	1
+	jp	nz,bwin4
+	ld	a,(sq1)
+	cp	0
+	jp	nz,bwin4
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+bwin4:
+	ld	a,(sq2)
+	cp	1
+	jp	nz,bwin5
+	ld	a,(sq5)
+	cp	1
+	jp	nz,bwin5
+	ld	a,(sq8)
+	cp	0
+	jp	nz,bwin5
+	ld	a,2
+	ld	(sq8),a
+	ld	a,3
+	ld	b,5
+	jp	puto
+bwin5:
+	ld	a,(sq2)
+	cp	1
+	jp	nz,bwin6
+	ld	a,(sq8)
+	cp	1
+	jp	nz,bwin6
+	ld	a,(sq5)
+	cp	0
+	jp	nz,bwin6
+	ld	a,2
+	ld	(sq5),a
+	ld	a,3
+	ld	b,3
+	jp	puto
+bwin6:
+	ld	a,(sq8)
+	cp	1
+	jp	nz,bwin7
+	ld	a,(sq5)
+	cp	1
+	jp	nz,bwin7
+	ld	a,(sq2)
+	cp	0
+	jp	nz,bwin7
+	ld	a,2
+	ld	(sq2),a
+	ld	a,3
+	ld	b,1
+	jp	puto
+bwin7:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,bwin8
+	ld	a,(sq6)
+	cp	1
+	jp	nz,bwin8
+	ld	a,(sq9)
+	cp	0
+	jp	nz,bwin8
+	ld	a,2
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	puto
+bwin8:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,bwin9
+	ld	a,(sq9)
+	cp	1
+	jp	nz,bwin9
+	ld	a,(sq6)
+	cp	0
+	jp	nz,bwin9
+	ld	a,2
+	ld	(sq6),a
+	ld	a,5
+	ld	b,3
+	jp	puto
+bwin9:
+	ld	a,(sq9)
+	cp	1
+	jp	nz,bwin10
+	ld	a,(sq6)
+	cp	1
+	jp	nz,bwin10
+	ld	a,(sq3)
+	cp	0
+	jp	nz,bwin10
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+bwin10:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,bwin11
+	ld	a,(sq2)
+	cp	1
+	jp	nz,bwin11
+	ld	a,(sq3)
+	cp	0
+	jp	nz,bwin11
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+bwin11:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,bwin12
+	ld	a,(sq3)
+	cp	1
+	jp	nz,bwin12
+	ld	a,(sq2)
+	cp	0
+	jp	nz,bwin12
+	ld	a,2
+	ld	(sq2),a
+	ld	a,3
+	ld	b,1
+	jp	puto
+bwin12:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,bwin13
+	ld	a,(sq2)
+	cp	1
+	jp	nz,bwin13
+	ld	a,(sq1)
+	cp	0
+	jp	nz,bwin13
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+bwin13:
+	ld	a,(sq4)
+	cp	1
+	jp	nz,bwin14
+	ld	a,(sq5)
+	cp	1
+	jp	nz,bwin14
+	ld	a,(sq6)
+	cp	0
+	jp	nz,bwin14
+	ld	a,2
+	ld	(sq6),a
+	ld	a,5
+	ld	b,3
+	jp	puto
+bwin14:
+	ld	a,(sq4)
+	cp	1
+	jp	nz,bwin15
+	ld	a,(sq6)
+	cp	1
+	jp	nz,bwin15
+	ld	a,(sq5)
+	cp	0
+	jp	nz,bwin15
+	ld	a,2
+	ld	(sq5),a
+	ld	a,3
+	ld	b,3
+	jp	puto
+bwin15:
+	ld	a,(sq6)
+	cp	1
+	jp	nz,bwin16
+	ld	a,(sq5)
+	cp	1
+	jp	nz,bwin16
+	ld	a,(sq4)
+	cp	0
+	jp	nz,bwin16
+	ld	a,2
+	ld	(sq4),a
+	ld	a,1
+	ld	b,3
+	jp	puto
+bwin16:
+	ld	a,(sq7)
+	cp	1
+	jp	nz,bwin17
+	ld	a,(sq8)
+	cp	1
+	jp	nz,bwin17
+	ld	a,(sq9)
+	cp	0
+	jp	nz,bwin17
+	ld	a,2
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	puto
+bwin17:
+	ld	a,(sq7)
+	cp	1
+	jp	nz,bwin18
+	ld	a,(sq9)
+	cp	1
+	jp	nz,bwin18
+	ld	a,(sq8)
+	cp	0
+	jp	nz,bwin18
+	ld	a,2
+	ld	(sq8),a
+	ld	a,3
+	ld	b,5
+	jp	puto
+bwin18:
+	ld	a,(sq8)
+	cp	1
+	jp	nz,bwin19
+	ld	a,(sq9)
+	cp	1
+	jp	nz,bwin19
+	ld	a,(sq7)
+	cp	0
+	jp	nz,bwin19
+	ld	a,2
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	puto
+bwin19:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,bwin20
+	ld	a,(sq5)
+	cp	1
+	jp	nz,bwin20
+	ld	a,(sq9)
+	cp	0
+	jp	nz,bwin20
+	ld	a,2
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	puto
+bwin20:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,bwin21
+	ld	a,(sq9)
+	cp	1
+	jp	nz,bwin21
+	ld	a,(sq5)
+	cp	0
+	jp	nz,bwin21
+	ld	a,2
+	ld	(sq5),a
+	ld	a,3
+	ld	b,3
+	jp	puto
+bwin21:
+	ld	a,(sq5)
+	cp	1
+	jp	nz,bwin22
+	ld	a,(sq9)
+	cp	1
+	jp	nz,bwin22
+	ld	a,(sq1)
+	cp	0
+	jp	nz,bwin22
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+bwin22:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,bwin23
+	ld	a,(sq5)
+	cp	1
+	jp	nz,bwin23
+	ld	a,(sq7)
+	cp	0
+	jp	nz,bwin23
+	ld	a,2
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	puto
+bwin23:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,bwin24
+	ld	a,(sq7)
+	cp	1
+	jp	nz,bwin24
+	ld	a,(sq5)
+	cp	0
+	jp	nz,bwin24
+	ld	a,2
+	ld	(sq5),a
+	ld	a,3
+	ld	b,3
+	jp	puto
+bwin24:
+	ld	a,(sq7)
+	cp	1
+	jp	nz,trick1
+	ld	a,(sq5)
+	cp	1
+	jp	nz,trick1
+	ld	a,(sq3)
+	cp	0
+	jp	nz,trick1
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+
+
+
+
+
+;block a trick by the player
+;tricks such as where it leaves computer with 2 spots to block and 1 turn
+trick1:
+	ld	a,(sq2)
+	cp	1
+	jp	nz,trick2
+	ld	a,(sq4)
+	cp	1
+	jp	nz,trick2
+	ld	a,(sq1)
+	cp	0
+	jp	nz,trick2
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+trick2:
+	ld	a,(sq2)
+	cp	1
+	jp	nz,trick3
+	ld	a,(sq6)
+	cp	1
+	jp	nz,trick3
+	ld	a,(sq3)
+	cp	0
+	jp	nz,trick3
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+trick3:
+	ld	a,(sq4)
+	cp	1
+	jp	nz,trick4
+	ld	a,(sq8)
+	cp	1
+	jp	nz,trick4
+	ld	a,(sq7)
+	cp	0
+	jp	nz,trick4
+	ld	a,2
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	puto
+trick4:
+	ld	a,(sq6)
+	cp	1
+	jp	nz,trick5
+	ld	a,(sq8)
+	cp	1
+	jp	nz,trick5
+	ld	a,(sq9)
+	cp	0
+	jp	nz,trick5
+	ld	a,2
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	puto
+
+trick5:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,trick6
+	ld	a,(sq6)
+	cp	1
+	jp	nz,trick6
+	ld	a,(sq3)
+	cp	0
+	jp	nz,trick6
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+trick6:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,trick7
+	ld	a,(sq8)
+	cp	1
+	jp	nz,trick7
+	ld	a,(sq9)
+	cp	0
+	jp	nz,trick7
+	ld	a,2
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	puto
+trick7:
+	ld	a,(sq9)
+	cp	1
+	jp	nz,trick8
+	ld	a,(sq4)
+	cp	1
+	jp	nz,trick8
+	ld	a,(sq7)
+	cp	0
+	jp	nz,trick8
+	ld	a,2
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	puto
+trick8:
+	ld	a,(sq7)
+	cp	1
+	jp	nz,trick9
+	ld	a,(sq2)
+	cp	1
+	jp	nz,trick9
+	ld	a,(sq1)
+	cp	0
+	jp	nz,trick9
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+trick9:
+	ld	a,(sq1)
+	cp	1
+	jp	nz,trick10
+	ld	a,(sq8)
+	cp	1
+	jp	nz,trick10
+	ld	a,(sq7)
+	cp	0
+	jp	nz,trick10
+	ld	a,2
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	puto
+trick10:
+	ld	a,(sq7)
+	cp	1
+	jp	nz,trick11
+	ld	a,(sq6)
+	cp	1
+	jp	nz,trick11
+	ld	a,(sq9)
+	cp	0
+	jp	nz,trick11
+	ld	a,2
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	puto
+trick11:
+	ld	a,(sq2)
+	cp	1
+	jp	nz,trick12
+	ld	a,(sq9)
+	cp	1
+	jp	nz,trick12
+	ld	a,(sq3)
+	cp	0
+	jp	nz,trick12
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+trick12:
+	ld	a,(sq3)
+	cp	1
+	jp	nz,trick13
+	ld	a,(sq4)
+	cp	1
+	jp	nz,trick13
+	ld	a,(sq1)
+	cp	0
+	jp	nz,trick13
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+
+trick13:
+	ld	a,(sq5)
+	cp	1
+	jp	nz,open1
+	ld	a,(sq9)
+	cp	1
+	jp	nz,open1
+	ld	a,(sq3)
+	cp	0
+	jp	nz,open1
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+
+	
+;go to open space
+open1:
+	ld	a,(sq2)
+	cp	0
+	jp	nz,open2
+	ld	a,2
+	ld	(sq2),a
+	ld	a,3
+	ld	b,1
+	jp	puto
+open2:
+	ld	a,(sq1)
+	cp	0
+	jp	nz,open3
+	ld	a,2
+	ld	(sq1),a
+	ld	a,1
+	ld	b,1
+	jp	puto
+open3:
+	ld	a,(sq3)
+	cp	0
+	jp	nz,open4
+	ld	a,2
+	ld	(sq3),a
+	ld	a,5
+	ld	b,1
+	jp	puto
+open4:
+	ld	a,(sq4)
+	cp	0
+	jp	nz,open5
+	ld	a,2
+	ld	(sq4),a
+	ld	a,1
+	ld	b,3
+	jp	puto
+open5:
+	ld	a,(sq5)
+	cp	0
+	jp	nz,open6
+	ld	a,2
+	ld	(sq5),a
+	ld	a,3
+	ld	b,3
+	jp	puto
+open6:
+	ld	a,(sq6)
+	cp	0
+	jp	nz,open7
+	ld	a,2
+	ld	(sq6),a
+	ld	a,5
+	ld	b,3
+	jp	puto
+open7:
+	ld	a,(sq7)
+	cp	0
+	jp	nz,open8
+	ld	a,2
+	ld	(sq7),a
+	ld	a,1
+	ld	b,5
+	jp	puto
+open8:
+	ld	a,(sq8)
+	cp	0
+	jp	nz,open9
+	ld	a,2
+	ld	(sq8),a
+	ld	a,3
+	ld	b,5
+	jp	puto
+open9:
+	ld	a,(sq9)
+	cp	0
+	jp	nz,tie
+	ld	a,2
+	ld	(sq9),a
+	ld	a,5
+	ld	b,5
+	jp	puto
+
+tie:
+	ld	a,0
+	ld	(PENCOL),a
+	ld	(PENROW),a
+	bcall(_clrscrnfull)
+	ld	hl,txtTie
+	bcall(_vputs)
+tie_loop:
+	bcall(_getcsc)
+	or	a
+	jp	z,tie_loop
+
+	cp	sk2nd
+	jp	z,Begin
+
+	jp	tie_loop
+
+youwon:
+	ld	a,0
+	ld	(PENCOL),a
+	ld	(PENROW),a
+	bcall(_clrscrnfull)
+	ld	hl,txtWon
+	bcall(_vputs)
+	ld	a,7
+	ld	(PENROW),a
+	ld	a,0
+	ld	(PENCOL),a
+	ld	hl,txtWon2
+	bcall(_vputs)
+won_loop:
+	bcall(_getcsc)
+	or	a
+	jp	z,won_loop
+
+	cp	sk2nd
+	jp	z,Begin
+
+	jp	won_loop
+youlost:
+	ld	a,0
+	ld	(PENCOL),a
+	ld	(PENROW),a
+	bcall(_clrscrnfull)
+	ld	hl,txtLost
+	bcall(_vputs)
+	ld	a,7
+	ld	(PENROW),a
+	ld	a,0
+	ld	(PENCOL),a
+	ld	hl,txtLost2
+	bcall(_vputs)
+lost_loop:
+	bcall(_getcsc)
+	or	a
+	jp	z,lost_loop
+
+	cp	sk2nd
+	jp	z,Begin
+
+	jp	lost_loop
+
+
+sq1:
+	.db	0
+
+sq2:
+	.db	0
+sq3:
+	.db	0
+sq4:
+	.db	0
+sq5:
+	.db	0
+sq6:
+	.db	0
+sq7:
+	.db	0
+sq8:
+	.db	0
+sq9:
+	.db	0
+turn:
+	.db	0
+curspot:
+	.db	3
+
+
+;sq1*sq2*sq3
+;***********
+;sq4*sq5*sq6
+;***********
+;sq7*sq8*sq9
+;
+;
+;2=occupied by "O"
+;1=occupied by "X"
+;0=unoccupied
+
+
+txtLeft:
+	.db	"Start",0
+txtUp:
+	.db	"Controls",0
+txtDown:
+	.db	"Credits",0
+txtRight:
+	.db	"Exit",0
+txtMainmenu:
+	.db	"UP:    controls "
+	.db	"DOWN:  credits  "
+	.db	"LEFT:  start    "
+	.db	"RIGHT: exit     ",0
+txtCredits:
+	.db	"Made by:  Eric Subach",0
+txtControls:
+	.db	"Numbers  1-9  "
+	.db	"correspond to",0
+txtControls2:
+	.db	"the locations.  ",0
+txtWon:
+	.db	"You beat the "
+	.db	"A.I.!",0
+txtWon2:
+	.db	"You are the "
+	.db	"master!  "
+	.db	"(Press 2nd)     ",0
+txtLost:
+	.db	"You lost!  Try "
+	.db	"again.",0
+txtLost2:
+	.db	"(Press 2nd)",0
+txtTie:
+	.db	"The game is a  "
+	.db	"tie.  "
+	.db	"(Press 2nd)     ",0
+gameboard:
+	.db	"                "
+	.db	"  * *           "
+	.db	" *****          "
+	.db	"  * *           "
+	.db	" *****          "
+	.db	"  * *           "
+	.db	"                ",0
+txtx:
+	.db	"X",0
+txto:
+	.db	"O",0
+
+Homescreen:
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$03,$EF,$9E,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$82,$20,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$82
+.db $20,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$82,$20,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$00,$8F,$9E,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$1F,$FF,$FF,$FF,$FF,$FF
+.db $FF,$FF,$FF,$FF,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$7C,$43,$C2,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$10,$A4,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$10,$E4
+.db $02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$11,$14,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$11,$13,$C2,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$0F,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$00,$00,$00,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$0F,$9C,$F8,$00,$00,$00,$00,$00,$08,$00,$00,$02,$02,$22,$80
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$02,$22,$E0,$00,$00,$00,$00
+.db $00,$08,$00,$00,$02,$02,$22,$80,$00,$00,$00,$00,$00,$08,$00,$00
+.db $02,$02,$1C,$F8,$00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00
+.db $00,$00,$00,$00,$00,$08,$00,$00,$02,$00,$00,$00,$FF,$FF,$FF,$FF
+.db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+.db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$C3,$FF,$FF,$FF
+.db $FE,$7F,$C7,$DF,$CF,$BF,$FB,$FF,$BD,$CE,$ED,$FF,$FE,$AA,$DD,$79
+.db $BA,$9C,$C9,$FF,$66,$F5,$55,$7F,$FE,$6B,$CC,$D7,$DA,$AA,$BA,$C7
+.db $5E,$ED,$54,$7F,$FE,$B6,$DD,$D7,$EA,$AA,$BA,$FF,$5E,$DD,$57,$7F
+.db $FE,$6F,$C5,$D9,$98,$9C,$CA,$FF,$66,$C6,$EF,$7F,$FF,$FF,$FF,$FF
+.db $FF,$FF,$FF,$FF,$BD,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+.db $C3,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+
+
+.end
+END

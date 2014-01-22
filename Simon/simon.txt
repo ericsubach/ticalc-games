@@ -1,0 +1,719 @@
+UnArchive |LSIMON
+1->T
+1->U
+1->Q
+1->D
+ClrHome
+{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}->|LSIMON
+Output(1,6,"SIMON")
+For(Z,1,50)
+End
+For(X,1,4)
+For(Y,1,10)
+Output(X,6,"     ")
+Output(X+1,6,"SIMON"
+End
+End
+For(X,1,200)
+End
+Lbl T
+UnArchive |LSIMON
+1->T
+1->U
+1->Q
+1->D
+{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}->|LSIMON
+ClrHome
+Menu("PICK ONE","PLAY",U,"EXIT",V)
+Lbl V
+Archive |LSIMON
+Stop
+Lbl U
+UnArchive |LSIMON
+Output(1,1,"7,8,4,AND 5 CORRESPOND TO UPPER AND LOWER LEFT AND RIGHT"
+Pause 
+ClrHome
+Lbl 1
+{5,5}->dim([A])
+[[1,1,1,1,1][1,0,1,0,1][1,1,1,1,1][1,0,1,0,1][1,1,1,1,1]]->[A]
+For(B,1,5
+For(A,1,5)
+[A](B,A->C
+If C=1
+Output(B,A,"*"
+End
+End
+Lbl 88
+1->U
+Lbl 97
+If |LSIMON(U)=Q-60
+Goto 96
+|LSIMON(U)->S
+If S=7
+Then
+Output(2,2,"O"
+For(X,1,200)
+End
+Output(2,2," "
+U+1->U
+Goto 97
+End
+If S=8
+Then
+Output(2,4,"O")
+For(X,1,200)
+End
+Output(2,4," "
+U+1->U
+Goto 97
+End
+If S=4
+Then
+Output(4,2,"O")
+For(X,1,200)
+End
+Output(4,2," "
+U+1->U
+Goto 97
+End
+If S=5
+Then
+Output(4,4,"O")
+For(X,1,200)
+End
+Output(4,4," "
+U+1->U
+Goto 97
+End
+Lbl 96
+1->U
+randInt(1,4)->T
+If T=1
+Then
+Output(2,2,"O"
+For(X,1,200)
+End
+Output(2,2," "
+7->|LSIMON(Q)
+Q+1->Q
+End
+If T=2
+Then
+Output(2,4,"O")
+For(X,1,200)
+End
+Output(2,4," "
+8->|LSIMON(Q)
+Q+1->Q
+End
+If T=3
+Then
+Output(4,2,"O")
+For(X,1,200)
+End
+Output(4,2," "
+4->|LSIMON(Q)
+Q+1->Q
+End
+If T=4
+Then
+Output(4,4,"O")
+For(X,1,200)
+End
+Output(4,4," "
+5->|LSIMON(Q)
+Q+1->Q
+End
+ClrHome
+If |LSIMON(1)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(1)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(2)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(2)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(3)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(3)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(4)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(4)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(5)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(5)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(6)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(6)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(7)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(7)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(8)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(8)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(9)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(9)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(10)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(10)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(11)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(11)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(12)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(12)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(13)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(13)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(14)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(14)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(15)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(15)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(16)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(16)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(17)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(17)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(18)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(18)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(19)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(19)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(20)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(20)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(21)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(21)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(22)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(22)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(23)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(23)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(24)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(24)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(25)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(25)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(26)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(26)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(27)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(27)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(28)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(28)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(29)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(29)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(30)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(30)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(31)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(31)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(32)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(32)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(33)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(33)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(34)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(34)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(35)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(35)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(36)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(36)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(37)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(37)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(38)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(38)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(39)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(39)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(40)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(40)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(41)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(41)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(42)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(42)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(43)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(43)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(44)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(44)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(45)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(45)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(46)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(46)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(47)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(47)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(48)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(48)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(49)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(49)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(50)=0
+Then
+ClrHome
+Goto W
+End
+Input R
+If R!=|LSIMON(50)
+Then
+ClrHome
+Goto 98
+End
+Lbl W
+ClrHome
+Output(5,5,YOU WON!"
+For(X,1,300)
+End
+ClrHome
+UnArchive |LHISS
+(Q-2)->|LHISS(1)
+Archive |LHISS
+Archive |LSIMON
+Goto T
+Lbl 98
+ClrHome
+Output(5,4,"GAME  OVER"
+For(X,1,300)
+End
+ClrHome
+Disp "YOUR SCORE",Q-2
+For(X,1,300)
+End
+UnArchive |LHISS
+If (Q-2)>|LHISS(1)
+Then
+ClrHome
+Output(1,1,"YOU GOT A NEW   HIGH SCORE!")
+For(X,1,300)
+End
+ClrHome
+(Q-2)->|LHISS(1)
+Archive |LHISS
+Archive |LSIMON
+Goto T
+Else
+UnArchive |LHISS
+Disp "HIGH SCORE",|LHISS(1)
+For(X,1,300)
+End
+ClrHome
+Archive |LHISS
+Archive |LSIMON
+Goto T
+End

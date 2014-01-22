@@ -1,0 +1,1265 @@
+ClrHome
+Output(5,3,"DANCING DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,3,"D"
+Output(5,4,"ANCING DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,4,"A"
+Output(5,3,"D NCING DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,5,"N"
+Output(5,3,"DA CING DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,6,"C"
+Output(5,3,"DAN ING DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,7,"I"
+Output(5,3,"DANC NG DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,8,"N"
+Output(5,3,"DANCI G DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,9,"G"
+Output(5,3,"DANCIN  DUDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,11,"D
+Output(5,3,"DANCING  UDE")
+For(X,1,50)
+End
+ClrHome
+Output(4,12,"U
+Output(5,3,"DANCING D DE")
+For(X,1,50)
+End
+ClrHome
+Output(4,13,"D
+Output(5,3,"DANCING DU E")
+For(X,1,50)
+End
+ClrHome
+Output(4,14,"E
+Output(5,3,"DANCING DUD")
+For(X,1,50)
+End
+ClrHome
+Output(5,3,"DANCING DUDE")
+For(X,1,250)
+End
+ClrHome
+If theta=0
+Then
+"0"->Str0
+"?????"->Str9
+{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}->|LSIMON
+{0}->|LHISS
+Archive |LHISS
+Archive |LSIMON
+End
+theta+1->theta
+If theta>=25 and Str0="1"
+Then
+"SIMON"->Str9
+Output(1,1,"YOU HAVE        UNLOCKED SIMON!"
+For(X,1,1000)
+End
+ClrHome
+"2"->Str0
+End
+Lbl A
+ClrHome
+Menu("PICK ONE","START DANCIN'",B,"WHO MADE THIS?",C,"HOW TO GROOVE",D,Str9,F,"I WANT OUT",E)
+Lbl D
+Output(1,1,"2ND- WAVY ARMS")
+Output(2,1,"ALPHA- SPLIT")
+Output(3,1,"MODE- RAISE DA'       ROOF")
+Output(5,1,"X-  ")
+Output(6,1,"CLEAR- MAIN MENU")
+Pause 
+Goto A
+Lbl E
+ClrHome
+Output(1,1,"BUH-BYE!")
+Pause 
+ClrHome
+Stop
+Lbl B
+0->Z
+AxesOff
+ClrDraw
+0->Xmin
+94->Xmax
+~62->Ymin
+0->Ymax
+For(X,46,48)
+Pxl-On(28,X)
+Pxl-On(29,X)
+Pxl-On(30,X)
+End
+For(Y,31,36)
+Pxl-On(Y,47)
+End
+For(X,45,49)
+Pxl-On(33,X)
+End
+For(Y,37,40)
+Pxl-On(Y,46)
+Pxl-On(Y,48)
+End
+Pxl-On(34,45)
+Pxl-On(35,45)
+Pxl-On(34,49)
+Pxl-On(35,49)
+Lbl H
+While 1
+getKey->G
+If G=21
+Goto I
+If G=31
+Goto J
+If G=22
+Goto K
+If G=45
+Goto L
+End
+Lbl L
+ClrDraw
+ClrHome
+Goto A
+Lbl I
+
+
+
+Pxl-Off(34,45)
+Pxl-Off(35,45)
+Pxl-Off(34,49)
+Pxl-Off(35,49)
+Pxl-On(33,43)
+Pxl-On(33,44)
+Pxl-On(33,50)
+Pxl-On(33,51)
+Pxl-Off(33,43)
+Pxl-On(32,43)
+For(X,1,50)
+End
+Pxl-Off(32,43)
+Pxl-On(33,43)
+Pxl-Off(33,44)
+Pxl-On(32,44)
+For(X,1,50)
+End
+Pxl-Off(32,44)
+Pxl-On(33,44)
+Pxl-Off(33,45)
+Pxl-On(32,45)
+For(X,1,50)
+End
+Pxl-Off(32,45)
+Pxl-On(33,45)
+Pxl-Off(33,46)
+Pxl-On(32,46)
+For(X,1,50)
+End
+Pxl-Off(32,46)
+Pxl-On(33,46)
+Pxl-Off(33,48)
+Pxl-On(32,48)
+For(X,1,50)
+End
+Pxl-Off(32,48)
+Pxl-On(33,48)
+Pxl-Off(33,49)
+Pxl-On(32,49)
+For(X,1,50)
+End
+Pxl-Off(32,49)
+Pxl-On(33,49)
+Pxl-Off(33,50)
+Pxl-On(32,50)
+For(X,1,50)
+End
+Pxl-Off(32,50)
+Pxl-On(33,50)
+Pxl-Off(33,51)
+Pxl-On(32,51)
+For(X,1,50)
+End
+Pxl-Off(32,51)
+Pxl-On(33,51)
+Pxl-Off(33,43)
+Pxl-Off(33,44)
+Pxl-Off(33,50)
+Pxl-Off(33,51)
+Pxl-On(34,45)
+Pxl-On(35,45)
+Pxl-Off(35,46)
+Pxl-On(34,49)
+Pxl-On(35,49)
+Goto H
+Lbl J
+
+
+
+Pxl-Off(34,45)
+Pxl-Off(35,45)
+Pxl-Off(34,49)
+Pxl-Off(35,49)
+Pxl-On(33,43)
+Pxl-On(33,44)
+Pxl-On(33,50)
+Pxl-On(33,51)
+For(X,1,10)
+End
+
+
+
+
+Pxl-Off(33,43)
+Pxl-Off(33,50)
+Pxl-Off(33,51)
+Pxl-Off(37,46)
+Pxl-Off(39,46)
+Pxl-Off(46,46)
+Pxl-Off(40,48)
+Pxl-Off(39,48)
+Pxl-Off(37,48)
+Pxl-Off(34,49)
+Pxl-Off(33,49)
+Pxl-Off(35,45)
+Pxl-Off(33,48)
+For(X,46,48)
+Pxl-Off(28,X)
+End
+Pxl-Off(33,46)
+Pxl-Off(33,45)
+Pxl-Off(34,46)
+Pxl-Off(35,46)
+Pxl-Off(35,46)
+Pxl-Off(40,46)
+For(X,46,48)
+Pxl-On(29,X)
+Pxl-On(30,X)
+Pxl-On(31,X)
+End
+Pxl-On(34,45)
+Pxl-On(35,49)
+Pxl-On(33,44)
+Pxl-On(34,46)
+Pxl-On(35,48)
+Pxl-On(36,50)
+Pxl-On(37,47)
+Pxl-On(39,45)
+Pxl-On(40,44)
+Pxl-On(39,49)
+Pxl-On(40,50)
+For(X,1,10)
+End
+
+
+
+
+
+For(X,46,48)
+Pxl-Off(29,X)
+End
+Pxl-Off(38,46)
+Pxl-Off(38,48)
+Pxl-Off(34,46)
+Pxl-Off(35,48)
+Pxl-Off(35,49)
+Pxl-Off(36,50)
+Pxl-On(32,46)
+Pxl-On(32,48)
+Pxl-On(37,49)
+Pxl-On(38,50)
+Pxl-On(38,47)
+Pxl-On(39,46)
+Pxl-On(39,48)
+Pxl-On(40,43)
+Pxl-On(40,51)
+Pxl-On(35,46)
+Pxl-On(36,48)
+For(X,1,10)
+End
+
+
+
+
+
+
+
+
+Pxl-Off(32,46)
+Pxl-Off(32,48)
+Pxl-Off(37,49)
+Pxl-Off(38,50)
+Pxl-Off(38,47)
+Pxl-Off(39,46)
+Pxl-Off(39,48)
+Pxl-Off(40,43)
+Pxl-Off(40,51)
+Pxl-Off(35,46)
+Pxl-Off(36,48)
+For(X,46,48)
+Pxl-On(29,X)
+End
+Pxl-On(38,46)
+Pxl-On(38,48)
+Pxl-On(34,46)
+Pxl-On(35,48)
+Pxl-On(35,49)
+Pxl-On(36,50)
+For(X,1,10)
+End
+
+
+
+
+
+
+For(X,46,48)
+Pxl-Off(29,X)
+Pxl-Off(30,X)
+Pxl-Off(31,X)
+Pxl-Off(33,44)
+Pxl-Off(34,46)
+Pxl-Off(35,48)
+Pxl-Off(36,50)
+Pxl-Off(37,47)
+Pxl-Off(39,45)
+Pxl-Off(40,44)
+Pxl-Off(39,49)
+Pxl-Off(40,50)
+Pxl-Off(34,45)
+Pxl-Off(35,49)
+Pxl-Off(33,44)
+Pxl-Off(35,45)
+Pxl-Off(34,49)
+Pxl-Off(46,46)
+Pxl-Off(31,48)
+Pxl-Off(34,49)
+Pxl-On(29,46)
+Pxl-On(30,46)
+Pxl-On(37,46)
+Pxl-On(39,46)
+Pxl-On(40,48)
+Pxl-On(39,48)
+Pxl-On(37,48)
+Pxl-On(33,49)
+Pxl-On(33,48)
+For(X,46,48)
+Pxl-On(28,X)
+End
+Pxl-On(33,46)
+Pxl-On(33,45)
+Pxl-On(40,46)
+Pxl-On(33,43)
+Pxl-On(33,50)
+Pxl-On(33,51)
+Pxl-On(33,44)
+For(X,1,10)
+End
+
+
+
+Pxl-Off(33,43)
+Pxl-Off(33,44)
+Pxl-Off(33,50)
+Pxl-Off(33,51)
+Pxl-On(34,45)
+Pxl-On(35,45)
+Pxl-On(34,49)
+Pxl-On(35,49)
+Goto H
+Lbl K
+Pxl-Off(34,45)
+Pxl-Off(35,45)
+Pxl-Off(34,49)
+Pxl-Off(35,49)
+Pxl-On(32,45)
+Pxl-On(31,45)
+Pxl-On(32,49)
+Pxl-On(31,49)
+Pxl-On(31,44)
+Pxl-On(31,50)
+For(X,1,75)
+End
+Repeat Z=3
+Pxl-Off(31,45)
+Pxl-Off(31,49)
+Pxl-On(34,45)
+Pxl-On(34,49)
+Pxl-Off(31,44)
+Pxl-Off(31,50)
+Pxl-On(32,44)
+Pxl-On(32,50)
+For(X,1,75)
+End
+Pxl-On(31,45)
+Pxl-On(31,49)
+Pxl-Off(34,45)
+Pxl-Off(34,49)
+Pxl-On(31,44)
+Pxl-On(31,50)
+Pxl-Off(32,44)
+Pxl-Off(32,50)
+For(X,1,75)
+End
+Z+1->Z
+End
+0->Z
+Pxl-Off(31,45)
+Pxl-Off(32,45)
+Pxl-Off(31,49)
+Pxl-Off(32,49)
+Pxl-On(34,45)
+Pxl-On(35,45)
+Pxl-On(34,49)
+Pxl-On(35,49)
+Pxl-Off(31,44)
+Pxl-Off(31,50)
+Goto H
+Lbl F
+If theta<50 or Str0!="2"
+Then
+ClrHome
+Output(1,1,"YOU HAVE NOT    UNLOCKED THIS   FEATURE YET.")
+Pause 
+ClrHome
+Goto A
+End
+If theta>=25 and Str0="2"
+Then
+UnArchive |LSIMON
+1->T
+1->U
+1->Q
+1->D
+ClrHome
+{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}->|LSIMON
+Output(1,6,"SIMON")
+For(Z,1,50)
+End
+For(X,1,4)
+For(Y,1,10)
+Output(X,6,"     ")
+Output(X+1,6,"SIMON"
+End
+End
+For(X,1,200)
+End
+Lbl T
+UnArchive |LSIMON
+1->T
+1->U
+1->Q
+1->D
+{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}->|LSIMON
+ClrHome
+Menu("PICK ONE","PLAY",U,"EXIT",V)
+Lbl V
+Archive |LSIMON
+Goto A
+Lbl U
+UnArchive |LSIMON
+Output(1,1,"7,8,4,AND 5 CORRESPOND TO UPPER AND LOWER LEFT AND RIGHT"
+Pause 
+ClrHome
+Lbl 1
+{5,5}->dim([A])
+[[1,1,1,1,1][1,0,1,0,1][1,1,1,1,1][1,0,1,0,1][1,1,1,1,1]]->[A]
+For(B,1,5
+For(A,1,5)
+[A](B,A->C
+If C=1
+Output(B,A,"*"
+End
+End
+Lbl 88
+1->U
+Lbl 97
+If |LSIMON(U)=Q-60
+Goto 96
+|LSIMON(U)->S
+If S=7
+Then
+Output(2,2,"O"
+For(X,1,200)
+End
+Output(2,2," "
+U+1->U
+Goto 97
+End
+If S=8
+Then
+Output(2,4,"O")
+For(X,1,200)
+End
+Output(2,4," "
+U+1->U
+Goto 97
+End
+If S=4
+Then
+Output(4,2,"O")
+For(X,1,200)
+End
+Output(4,2," "
+U+1->U
+Goto 97
+End
+If S=5
+Then
+Output(4,4,"O")
+For(X,1,200)
+End
+Output(4,4," "
+U+1->U
+Goto 97
+End
+Lbl 96
+1->U
+randInt(1,4)->T
+If T=1
+Then
+Output(2,2,"O"
+For(X,1,200)
+End
+Output(2,2," "
+7->|LSIMON(Q)
+Q+1->Q
+End
+If T=2
+Then
+Output(2,4,"O")
+For(X,1,200)
+End
+Output(2,4," "
+8->|LSIMON(Q)
+Q+1->Q
+End
+If T=3
+Then
+Output(4,2,"O")
+For(X,1,200)
+End
+Output(4,2," "
+4->|LSIMON(Q)
+Q+1->Q
+End
+If T=4
+Then
+Output(4,4,"O")
+For(X,1,200)
+End
+Output(4,4," "
+5->|LSIMON(Q)
+Q+1->Q
+End
+ClrHome
+If |LSIMON(1)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(1)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(2)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(2)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(3)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(3)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(4)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(4)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(5)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(5)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(6)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(6)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(7)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(7)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(8)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(8)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(9)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(9)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(10)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(10)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(11)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(11)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(12)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(12)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(13)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(13)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(14)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(14)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(15)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(15)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(16)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(16)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(17)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(17)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(18)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(18)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(19)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(19)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(20)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(20)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(21)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(21)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(22)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(22)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(23)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(23)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(24)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(24)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(25)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(25)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(26)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(26)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(27)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(27)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(28)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(28)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(29)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(29)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(30)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(30)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(31)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(31)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(32)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(32)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(33)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(33)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(34)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(34)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(35)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(35)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(36)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(36)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(37)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(37)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(38)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(38)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(39)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(39)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(40)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(40)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(41)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(41)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(42)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(42)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(43)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(43)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(44)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(44)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(45)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(45)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(46)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(46)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(47)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(47)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(48)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(48)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(49)=0
+Then
+ClrHome
+Goto 1
+End
+Input R
+If R!=|LSIMON(49)
+Then
+ClrHome
+Goto 98
+End
+If |LSIMON(50)=0
+Then
+ClrHome
+Goto W
+End
+Input R
+If R!=|LSIMON(50)
+Then
+ClrHome
+Goto 98
+End
+Lbl W
+ClrHome
+Output(5,5,YOU WON!"
+For(X,1,300)
+End
+ClrHome
+UnArchive |LHISS
+(Q-2)->|LHISS(1)
+Archive |LHISS
+Archive |LSIMON
+Goto T
+Lbl 98
+ClrHome
+Output(5,4,"GAME  OVER"
+For(X,1,300)
+End
+ClrHome
+Disp "YOUR SCORE",Q-2
+For(X,1,300)
+End
+UnArchive |LHISS
+If (Q-2)>|LHISS(1)
+Then
+ClrHome
+Output(1,1,"YOU GOT A NEW   HIGH SCORE!")
+For(X,1,300)
+End
+ClrHome
+(Q-2)->|LHISS(1)
+Archive |LHISS
+Archive |LSIMON
+Goto T
+Else
+UnArchive |LHISS
+Disp "HIGH SCORE",|LHISS(1)
+For(X,1,300)
+End
+ClrHome
+Archive |LHISS
+Archive |LSIMON
+Goto T
+End
+End
+Lbl C
+ClrDraw
+FnOff 
+AxesOff
+For(X,50,37,~1)
+Text(X,35,"GAME BY:")
+Text(X+6,35,"                         ")
+For(Y,1,50)
+End
+End
+Text(50,28,"ERIC SUBACH")
+For(X,36,32,~1)
+Text(X+13,28,"ERIC SUBACH")
+Text(X+19,28,"                                            ")
+Text(X,35,"GAME BY:")
+Text(X+6,35,"                                ")
+End
+Text(32,35,"                                    ")
+For(X,45,37,~1)
+Text(X,28,"ERIC SUBACH")
+Text(X+6,28,"                                               ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,18,"SPECIAL THANKS TO:")
+Text(X+20,18,"                                                             ")
+Text(X,28,"ERIC SUBACH")
+Text(X+6,28,"                                          ")
+End
+Text(32,28,"                                                    ")
+For(X,46,37,~1)
+Text(X,18,"SPECIAL THANKS TO:")
+Text(X+6,18,"                                                                     ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,3,"          WWW.DANCINGBUSH.COM")
+Text(X+20,3,"                                                                                                 ")
+Text(X,18,"SPECIAL THANKS TO:")
+Text(X+6,18,"                                                                    ")
+End
+Text(32,18,"                                                                     ")
+For(X,46,37,~1)
+Text(X,3,"          WWW.DANCINGBUSH.COM")
+Text(X+6,3,"                                                                                                                           ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,30,"CREDITS BY:")
+Text(X+20,30,"                                                            ")
+Text(X,3,"          WWW.DANCINGBUSH.COM")
+Text(X+6,3,"                                                                                                                          ")
+End
+Text(32,3,"                                                                                                                ")
+For(X,46,37,~1)
+Text(X,30,"CREDITS BY:")
+Text(X+6,30,"                                                                     ")
+For(Y,1,50)
+End
+End
+For(X,36,32,~1)
+Text(X+14,28,"ERIC SUBACH")
+Text(X+20,28,"                                                        ")
+Text(X,30,"CREDITS BY:")
+Text(X+6,30,"                                                      ")
+End
+Text(32,30,"                                                     ")
+For(X,46,32,~1)
+Text(X,28,"ERIC SUBACH")
+Text(X+6,28,"                                                      ")
+For(Y,1,50)
+End
+End
+ClrDraw
+Output(1,1,"I WOULD ALSO LIKE TO RECOGNIZE LAURA SUMI, MIKE SUNKEL, AND MATT KNOUFF FOR THEIR CONSTANT HELP AND SUPPORT.")
+For(X,1,3000)
+End
+ClrHome
+Output(1,1,"TO SHOW YOUR SUPPORT FOR THIS GAME, PLEASE LINK IT TO A FRIEND.")
+For(X,1,3000)
+End
+ClrHome
+Output(1,1,"WE HOPE YOU ENJOY THE GAME AS MUCH AS WE DO. THANK YOU FOR PLAYING.")
+For(X,1,3000)
+End
+ClrHome
+Output(4,6,"-THE DANCING DUDE DEVELOPEMENT TEAM"
+For(X,1,2000)
+End
+ClrHome
+If Str0!="2"
+Then
+"1"->Str0
+End
+Goto A
