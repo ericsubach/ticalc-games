@@ -1,6 +1,6 @@
 # TI-83 Plus Calculator Games
 
-All my TI-32 Plus games developed and published on [ticalc.org](www.ticalc.org) way back in 2004.
+All my TI-83 Plus games developed and published on [ticalc.org](www.ticalc.org) way back in 2004.
 
 Most of these games are written in [TI-BASIC](http://en.wikipedia.org/wiki/TI-BASIC), similar to the [BASIC programming language](http://en.wikipedia.org/wiki/BASIC).
 
